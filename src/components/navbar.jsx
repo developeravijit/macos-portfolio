@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <nav>
       <div>
-        <img src="/public/public/images/logo.svg" alt="logo" />
+        <img src={`${import.meta.env.BASE_URL}images/logo.svg`} alt="logo" />
         <p className="font-bold">Avijit's Portfolio</p>
         <ul>
           {navLinks.map(({ id, name }) => (
