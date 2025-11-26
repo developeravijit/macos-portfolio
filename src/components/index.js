@@ -1,5 +1,6 @@
 import Navbar from "#components/navbar.jsx";
 import Welcome from "#components/welcome.jsx";
-import Background from "./background";
+import Background from "#components/background.jsx";
+import Dock from "#components/dock.jsx";
 
-export { Navbar, Welcome, Background };
+export { Navbar, Welcome, Background, Dock };

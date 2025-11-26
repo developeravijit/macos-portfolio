@@ -1,10 +1,11 @@
-import { Background, Navbar, Welcome } from "#components";
+import { Background, Dock, Navbar, Welcome } from "#components";
 function App() {
   return (
     <main>
       <Background />
       <Navbar />
       <Welcome />
+      <Dock />
     </main>
   );
 }

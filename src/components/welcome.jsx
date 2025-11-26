@@ -98,7 +98,10 @@ const Welcome = () => {
       </p>
 
       <h1 ref={titleRef} className="mt-7">
-        {renderText("Portfolio", "text-5xl sm:text-6xl md:text-8xl lg:text-9xl italic font-georama")}
+        {renderText(
+          "Portfolio",
+          "text-5xl sm:text-6xl md:text-8xl lg:text-9xl italic font-georama"
+        )}
       </h1>
     </section>
   );
