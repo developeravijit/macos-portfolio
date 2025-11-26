@@ -71,23 +71,34 @@ const Welcome = () => {
     const subtitleCleanup = setupTextHover(subTitleRef.current, "Subtitles");
 
     return () => {
-      subtitleCleanup();
+      titleCleanup();
       subtitleCleanup();
     };
   }, []);
 
   return (
-    <section id="welcome">
+    <section
+      id="welcome"
+      className="
+        text-gray-200 flex flex-col justify-center items-center 
+        absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+        select-none px-4
+        w-full max-w-[1200px]
+
+        /* Mobile spacing fix */
+        sm:px-6
+      "
+    >
       <p ref={subTitleRef}>
         {renderText(
           "Hey, I'm Avijit! Welcome to my portfolio.",
-          "text-3xl font-georama",
+          "text-xl sm:text-2xl md:text-3xl font-georama",
           200
         )}
       </p>
 
       <h1 ref={titleRef} className="mt-7">
-        {renderText("Portfolio", "text-9xl italic font-georama")}
+        {renderText("Portfolio", "text-5xl sm:text-6xl md:text-8xl lg:text-9xl italic font-georama")}
       </h1>
     </section>
   );
