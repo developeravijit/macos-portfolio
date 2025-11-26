@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import Navbar from "#components/navbar.jsx";
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">welcome to my portfolio</h1>
-    </div>
-  )
+    <main>
+      <Navbar />
+    </main>
+  );
 }
 
-export default App
+export default App;
