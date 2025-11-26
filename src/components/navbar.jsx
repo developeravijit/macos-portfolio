@@ -16,11 +16,10 @@ const Navbar = () => {
 
   return (
     <nav className="navbar-macos z-50 select-none">
-
       {/* LEFT — logo + menu */}
       <div className="flex items-center gap-3 md:gap-5">
         <img
-          src={`${import.meta.env.BASE_URL}images/logo.svg`}
+          src={`${import.meta.env.BASE_URL}images/logoMac.svg`}
           className="w-5 transition duration-200 hover:brightness-200"
         />
 
@@ -30,10 +29,7 @@ const Navbar = () => {
 
         <ul className="hidden md:flex items-center gap-5">
           {navLinks.map(({ id, name }) => (
-            <li
-              key={id}
-              className="relative cursor-pointer mac-underline"
-            >
+            <li key={id} className="relative cursor-pointer mac-underline">
               {name}
             </li>
           ))}
@@ -42,7 +38,6 @@ const Navbar = () => {
 
       {/* RIGHT — status icons + clock */}
       <div className="flex items-center gap-4">
-
         {/* Desktop status icons */}
         <ul className="hidden md:flex items-center gap-3 opacity-90">
           {navIcons.map(({ id, img }) => (
