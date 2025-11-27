@@ -219,7 +219,7 @@ const WORK_LOCATION = {
   id: 1,
   type: "work",
   name: "Work",
-  icon: "/icons/work.svg",
+  icon: "/public/icons/work.svg",
   kind: "folder",
   children: [
     // ▶ Project 1

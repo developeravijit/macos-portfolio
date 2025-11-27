@@ -84,15 +84,13 @@ const Welcome = () => {
         absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
         select-none px-4
         w-full max-w-[1200px]
-
-        /* Mobile spacing fix */
         sm:px-6
       "
     >
-      <p ref={subTitleRef}>
+      <p ref={subTitleRef} className="text-lg sm:text-xl md:text-2xl">
         {renderText(
           "Hey, I'm Avijit! Welcome to my portfolio.",
-          "text-xl sm:text-2xl md:text-3xl font-georama",
+          "text-base sm:text-lg md:text-xl font-georama",
           200
         )}
       </p>
@@ -100,7 +98,7 @@ const Welcome = () => {
       <h1 ref={titleRef} className="mt-7">
         {renderText(
           "Portfolio",
-          "text-5xl sm:text-6xl md:text-8xl lg:text-9xl italic font-georama"
+          "text-4xl sm:text-5xl md:text-7xl lg:text-8xl italic font-georama"
         )}
       </h1>
     </section>
