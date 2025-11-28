@@ -4,8 +4,12 @@ import tailwindcss from "@tailwindcss/vite";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
+// Detect if running on Vercel
+const isVercel = process.env.VERCEL;
+
 export default defineConfig({
-  base: "/macos-portfolio/", // <--- REQUIRED FOR GITHUB PAGES
+  // Use "/" for Vercel, "/macos-portfolio/" for GitHub Pages
+  base: isVercel ? "/" : "/macos-portfolio/",
 
   plugins: [react(), tailwindcss()],
 
