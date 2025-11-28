@@ -9,6 +9,21 @@ const useWindowStore = create(
 
     openWindow: (windowKey, data = null) =>
       set((state) => {
+        // create unique instances for text and image files so multiple windows can open
+        if (windowKey === "txtfile" || windowKey === "imgfile") {
+          const id = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
+          const key = `${windowKey}-${id}`;
+          state.windows[key] = {
+            isOpen: true,
+            isMinimized: false,
+            isMaximized: false,
+            zIndex: state.nextZIndex,
+            data: data,
+          };
+          state.nextZIndex++;
+          return;
+        }
+
         const win = state.windows[windowKey];
         win.isOpen = true;
         win.isMinimized = false;
@@ -19,6 +34,12 @@ const useWindowStore = create(
 
     closeWindow: (windowKey) =>
       set((state) => {
+        // remove dynamic instances entirely for tidiness
+        if (windowKey.startsWith("txtfile-") || windowKey.startsWith("imgfile-")) {
+          delete state.windows[windowKey];
+          return;
+        }
+
         const win = state.windows[windowKey];
         win.isOpen = false;
         win.isMinimized = false;

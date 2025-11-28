@@ -10,10 +10,13 @@ const isMobile = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(max-width: 767px)").matches;
 
-const windowWrapper = (Component, windowKey) => {
+const windowWrapper = (Component, boundWindowKey) => {
   const Wrapped = (props) => {
     const { focusWindow, windows } = useWindowStore();
-    const { isOpen, isMinimized, isMaximized, zIndex } = windows[windowKey];
+
+    const effectiveKey = props.windowKey ?? boundWindowKey;
+    const win = windows[effectiveKey] || {};
+    const { isOpen, isMinimized, isMaximized, zIndex } = win;
 
     const ref = useRef(null);
     const dragInstance = useRef(null);
@@ -41,7 +44,7 @@ const windowWrapper = (Component, windowKey) => {
       }
 
       dragInstance.current = Draggable.create(el, {
-        onPress: () => focusWindow(windowKey),
+        onPress: () => focusWindow(effectiveKey),
         bounds: document.body,
         edgeResistance: 0.75,
       })[0];
@@ -132,12 +135,13 @@ const windowWrapper = (Component, windowKey) => {
 
     return (
       <section
-        id={windowKey}
+        id={effectiveKey}
         ref={ref}
         style={{ zIndex }}
         className="absolute window"
+        onMouseDown={() => focusWindow(effectiveKey)}
       >
-        <Component {...props} />
+        <Component {...props} windowKey={effectiveKey} />
       </section>
     );
   };
