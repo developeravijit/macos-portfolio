@@ -87,10 +87,10 @@ const Welcome = () => {
         sm:px-6
       "
     >
-      <p ref={subTitleRef} className="text-lg sm:text-xl md:text-2xl">
+      <p ref={subTitleRef} className="text-lg">
         {renderText(
           "Hey, I'm Avijit! Welcome to my portfolio.",
-          "text-base sm:text-lg md:text-xl font-georama",
+          "text-base sm:text-xl md:text-3xl font-georama",
           200
         )}
       </p>

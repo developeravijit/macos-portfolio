@@ -6,11 +6,12 @@
   --bg-window: #ffffff;
   --bg-sidebar: #f7f7f7;
   --bg-header: rgba(255, 255, 255, 0.85);
-
   --text-main: #1e1e1e;
   --text-secondary: #555;
+  --text-tertiary: rgba(55, 65, 81, 1);
+  --active-bg: #e2e8ff;
+  --active-text: #3b44f6;
   --border-color: rgba(0, 0, 0, 0.1);
-
   --nav-gradient: linear-gradient(to bottom, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.45));
 }
 
@@ -19,11 +20,12 @@
   --bg-window: #1a1a1a;
   --bg-sidebar: #161616;
   --bg-header: rgba(0, 0, 0, 0.55);
-
   --text-main: #f2f2f2;
   --text-secondary: #b5b5b5;
+  --text-tertiary: rgba(209, 213, 219, 1);
+  --active-bg: #2b2f45;
+  --active-text: #a4b2ff;
   --border-color: rgba(255, 255, 255, 0.12);
-
   --nav-gradient: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.35));
 }
 
@@ -33,9 +35,97 @@ body {
   width: 100dvw;
   overflow: hidden;
   height: 100dvh;
-  background: rgb(138, 40, 229);
+  background: rgba(229, 40, 40, 0.1);
 }
 
+/* =================================
+   MACOS LOADING SCREEN (ENHANCED)
+   ================================= */
+.mac-loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.mac-loading-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.mac-loader-box {
+  width: 200px;
+  height: 200px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mac-apple-logo {
+  width: 52px;
+  position: absolute;
+  top: 20%;
+  opacity: 1;
+}
+
+.mac-pulse {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  filter: blur(20px);
+  animation: pulseGlow 2s infinite ease-in-out;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.4;
+  }
+}
+
+.mac-spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: macSpin 1s linear infinite;
+  position: absolute;
+  bottom: 20%;
+}
+
+@keyframes macSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 
 @theme {
@@ -288,6 +378,11 @@ body {
 /* -------------------------------------------------- */
 
 
+.resume-window #window-header {
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-color);
+}
+
 
 .resume-window {
   width: 100%;
@@ -300,10 +395,60 @@ body {
   flex-direction: column;
 }
 
+
+.resume-window .page-number {
+  text-align: center;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+
 .resume-content {
+  background: var(--bg-window);
   flex: 1;
   overflow-y: auto;
 }
+
+
+.resume-window .pdf-zoom-wrapper {
+  background: var(--bg-window);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+.resume-window .pdf-page-wrapper {
+  background: var(--bg-window);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-elevation-medium);
+  margin-bottom: 25px;
+}
+
+
+.resume-window canvas {
+  background: var(--bg-window) !important;
+  border-radius: 10px;
+}
+
+
+.resume-window ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.resume-window ::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  border-radius: 10px;
+}
+
+.resume-window ::-webkit-scrollbar-track {
+  background: var(--bg-window);
+}
+
 
 /* -------------------------------------------------- */
 /*            FINDER WINDOW                           */
@@ -361,12 +506,12 @@ body {
 }
 
 .finder-item.active {
-  background: #e2e8ff;
-  color: #3b44f6;
+  background: var(--active-bg);
+  color: var(--active-text);
 }
 
 .finder-item.not-active:hover {
-  background: #efefef;
+  background: var(--active-bg);
 }
 
 .finder-content {
@@ -561,6 +706,10 @@ body {
   color: var(--text-main);
 }
 
+.contactTitle-details {
+  color: var(--text-tertiary);
+}
+
 /* -------------------------------------------------- */
 /*                 HOME PAGE FOLDERS                  */
 /* -------------------------------------------------- */
@@ -740,6 +889,11 @@ body {
   .gallery-sidebar {
     width: 200px;
   }
+
+  #safari {
+    width: 90vw;
+    left: 5vw;
+  }
 }
 
 @media (max-width: 768px) {
@@ -767,7 +921,7 @@ body {
     font-size: 40px;
   }
 
-  /* Terminal and any mobile-fullscreen windows should occupy the full mobile viewport */
+
   #terminal,
   .window.mobile-fullscreen {
     position: fixed !important;
@@ -782,7 +936,7 @@ body {
     z-index: 60 !important;
   }
 
-  /* Text and Image windows: make them full-width on smaller screens */
+
   .text-file-window,
   .image-file-window,
   .contact-window {
@@ -808,7 +962,8 @@ body {
   }
 
   .finder-content {
-    width: 100%;
+    width: auto !important;
+    flex: 1 1 auto;
   }
 
 
@@ -825,6 +980,16 @@ body {
     padding: 20px;
   }
 
+  .finder-content {
+    width: 100%;
+    position: static;
+  }
+
+  .finder-content li {
+    position: static;
+    width: 100%;
+    margin-bottom: 16px;
+  }
 
 }
 

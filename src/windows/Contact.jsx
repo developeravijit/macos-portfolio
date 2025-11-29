@@ -19,14 +19,17 @@ const Contact = () => {
           alt="Avijit"
           className="w-24 h-24 rounded-full object-cover shadow"
         />
+        <div className="contactTitle-details space-y-3">
+          <h3 className="text-lg font-semibold">Let’s Connect</h3>
 
-        <h3 className="text-lg font-semibold text-gray-700">Let’s Connect</h3>
+          <p className=" leading-relaxed">
+            I'm Avijit Roy. You can reach me anytime.
+          </p>
 
-        <p className="text-gray-600 leading-relaxed">
-          I'm Avijit Roy. You can reach me anytime.
-        </p>
+          <p className=" font-medium">roysidharth1996@gmail.com</p>
 
-        <p className="text-gray-800 font-medium">roysidharth1996@gmail.com</p>
+          <p className=" font-medium">8910806300</p>
+        </div>
 
         <ul className="w-full flex flex-col gap-3 mt-3">
           {socials.map(({ id, bg, link, icon, text }) => (

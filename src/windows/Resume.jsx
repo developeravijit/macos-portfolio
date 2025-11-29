@@ -31,13 +31,21 @@ const Resume = () => {
 
   return (
     <div className="resume-window">
-      <div id="window-header" className="sticky top-0 z-10 bg-white flex items-center justify-between px-4 py-3">
+      <div
+        id="window-header"
+        className="sticky top-0 z-10 flex items-center justify-between px-4 py-3"
+      >
         <WindowControls target="resume" />
-        <h2 className="text-sm text-gray-500">Resume.pdf</h2>
+
+        <h2 className="text-sm">Resume.pdf</h2>
 
         <div className="flex items-center gap-3">
-          <button onClick={zoomIn} className="icon text-lg">+</button>
-          <button onClick={zoomOut} className="icon text-lg">−</button>
+          <button onClick={zoomIn} className="icon text-lg">
+            +
+          </button>
+          <button onClick={zoomOut} className="icon text-lg">
+            −
+          </button>
           <a href={pdfPath} download title="Download resume">
             <Download className="icon" />
           </a>
@@ -50,7 +58,10 @@ const Resume = () => {
           style={{ touchAction: "pan-y pinch-zoom" }}
           onTouchEnd={handleDoubleTap}
         >
-          <Document file={pdfPath} onLoadSuccess={({ numPages }) => setNumPages(numPages)}>
+          <Document
+            file={pdfPath}
+            onLoadSuccess={({ numPages }) => setNumPages(numPages)}
+          >
             {Array.from(new Array(numPages), (el, index) => (
               <div key={index} className="pdf-page-wrapper">
                 <Page
@@ -60,7 +71,13 @@ const Resume = () => {
                   renderAnnotationLayer={false}
                   width={850}
                 />
-                <p className="page-number">Page {index + 1} of {numPages}</p>
+
+                <p
+                  className="page-number"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  Page {index + 1} of {numPages}
+                </p>
               </div>
             ))}
           </Document>
