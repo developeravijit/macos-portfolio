@@ -22,7 +22,7 @@
   --bg-header: rgba(0, 0, 0, 0.55);
   --text-main: #f2f2f2;
   --text-secondary: #b5b5b5;
-  --text-tertiary: rgba(209, 213, 219, 1);
+  --text-tertiary: rgb(2, 169, 122);
   --active-bg: #2b2f45;
   --active-text: #a4b2ff;
   --border-color: rgba(255, 255, 255, 0.12);
@@ -805,6 +805,11 @@ body {
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 10px;
+  color: var(--text-main);
+}
+
+.gallery-sidebar p {
+  color: var(--text-main);
 }
 
 .gallery-sidebar ul {
