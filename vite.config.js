@@ -11,6 +11,9 @@ export default defineConfig({
   base: isVercel ? "/" : "/macos-portfolio/",
 
   plugins: [react(), tailwindcss()],
+  build: {
+    chunkSizeWarningLimit: 1500,
+  },
 
   resolve: {
     alias: {
