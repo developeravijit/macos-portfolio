@@ -4,7 +4,6 @@ import tailwindcss from "@tailwindcss/vite";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 
-// Detect if running on Vercel
 const isVercel = process.env.VERCEL;
 
 export default defineConfig({

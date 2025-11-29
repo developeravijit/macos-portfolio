@@ -17,7 +17,12 @@ const Home = () => {
   };
 
   useGSAP(() => {
-    Draggable.create(".folder");
+    Draggable.create(".folder", {
+      allowEventDefault: true,
+      dragClickables: true,
+      minimumMovement: 6,
+      cursor: "grab",
+    });
   }, []);
 
   return (
