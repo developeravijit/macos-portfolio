@@ -4,18 +4,25 @@ import { photosLinks, gallery } from "#constants";
 import { Search } from "lucide-react";
 import useWindowStore from "#store/window";
 
-const Gallery = () => {
-  const { openWindow } = useWindowStore();
+const Gallery = ({ windowKey }) => {
+  const { openWindow, focusWindow } = useWindowStore();
 
   const openImage = (imgObj) => {
-    openWindow("imgfile", {
+    const key = `imgfile-${imgObj.id}`;
+
+    openWindow(key, {
       name: `Image-${imgObj.id}`,
       imageUrl: imgObj.img,
     });
+
+    focusWindow(key);
   };
 
   return (
-    <div className="gallery-window">
+    <div
+      className="window gallery-window"
+      onMouseDown={() => focusWindow(windowKey)}
+    >
       <div id="window-header">
         <WindowControls target="photos" />
         <Search className="icon" />
@@ -34,13 +41,19 @@ const Gallery = () => {
           </ul>
         </div>
 
-        {/* RIGHT SIDE CONTENT */}
-        <div className="gallery-content">
+        {/* RIGHT SIDE */}
+        <div
+          className="gallery-content"
+          onMouseDown={(e) => e.stopPropagation()}
+        >
           {gallery.map((img) => (
             <div
               key={img.id}
               className={`gallery-photo ${img.position}`}
-              onClick={() => openImage(img)}
+              onMouseDown={(e) => {
+                e.stopPropagation();
+                openImage(img);
+              }}
             >
               <img src={img.img} alt={`Photo-${img.id}`} />
               <p className="gallery-label">Photo {img.id}</p>

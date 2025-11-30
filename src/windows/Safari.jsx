@@ -13,64 +13,68 @@ import {
   ShieldHalf,
 } from "lucide-react";
 
-const Safari = () => {
+const Safari = ({ windowKey }) => {
   return (
-    <>
+    <div className="safari-window">
       <div id="window-header">
-        <WindowControls target="safari" />
+        <WindowControls target={windowKey} />
 
-        <PanelLeft className="ml-10 icon" />
+        <PanelLeft className="icon ml-8" />
 
         <div className="flex items-center gap-1 ml-5">
           <ChevronLeft className="icon" />
           <ChevronRight className="icon" />
         </div>
-        <div className="flex-1 flex-center gap-3">
+
+        <div className="flex-1 flex items-center gap-3 ml-5">
           <ShieldHalf className="icon" />
 
-          <div className="search">
+          <div className="safari-search">
             <Search className="icon" />
-
             <input
               type="text"
               placeholder="Search or Enter Website Name"
-              className="flex-1"
+              className="safari-input"
             />
           </div>
         </div>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-4">
           <Share className="icon" />
           <Plug className="icon" />
           <Copy className="icon" />
         </div>
       </div>
 
-      <div className="blog">
-        <h2>My Developer Blog</h2>
+      <div className="safari-body">
+        <h2 className="safari-title">My Developer Blog</h2>
 
-        <div className="space-y-8">
+        <div className="safari-posts">
           {blogPosts.map(({ id, image, title, date, link }) => (
-            <div key={id} className="blog-post">
-              <div className="col-span-2">
-                <img src={image} alt="title" />
-              </div>
+            <div key={id} className="safari-post">
+              <img src={image} alt={title} className="safari-post-img" />
 
-              <div className="content">
-                <p>{date}</p>
-                <h3>{title}</h3>
-                <a href={link} target="_blank" rel="noopener noreferrer">
-                    Checkout the full post <MoveRight className="icon-hover"/>
+              <div className="safari-post-content">
+                <p className="safari-post-date">{date}</p>
+                <h3 className="safari-post-title">{title}</h3>
+
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="safari-post-link"
+                >
+                  Checkout the full post
+                  <MoveRight className="icon-hover" />
                 </a>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
 const SafariWindow = windowWrapper(Safari, "safari");
-
 export default SafariWindow;
